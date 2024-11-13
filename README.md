@@ -342,7 +342,6 @@ async presentAlert(header: string, message: string) {
 - **Penjelasan:**
   - Fungsi ini digunakan untuk menampilkan notifikasi sukses atau gagal berdasarkan hasil operasi CRUD.
 
-Tentu, saya akan menyesuaikan ukuran gambarnya agar konsisten seperti sebelumnya.
 
 ### Delete Mahasiswa
 
@@ -483,5 +482,4 @@ getMahasiswa() {
 - **Penjelasan:**
   - Setelah data berhasil dihapus, fungsi ini akan memanggil endpoint `tampil.php` untuk mengambil data mahasiswa terbaru dan memperbarui variabel `dataMahasiswa`.
 
----Tentu, saya akan menyesuaikan ukuran gambarnya agar konsisten seperti sebelumnya.
 
