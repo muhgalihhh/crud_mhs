@@ -170,15 +170,18 @@ async presentAlert(header: string, message: string) {
 | <img src="https://github.com/user-attachments/assets/8a2cd7fc-1785-42f6-aca4-7c05b035c9b7" width="150px" /> | <img src="https://github.com/user-attachments/assets/80b51d92-889e-4c71-8b2e-bfbf08588f40" width="150px" /> | <img src="https://github.com/user-attachments/assets/900e93af-c9ae-4303-8372-865b119c3130" width="150px" /> |
 
 --- 
-
-Dengan struktur ini, README menjadi lebih terorganisir dan informatif. Gambar diperkecil untuk kemudahan baca. Jika ada tambahan fitur yang ingin dijelaskan, silakan beri tahu! 😊
 ### Update Mahasiswa
-![iPhone-13-PRO-localhost (20)](https://github.com/user-attachments/assets/a95028e1-55ca-4b99-b356-8129b901916b)
-![iPhone-13-PRO-localhost (21)](https://github.com/user-attachments/assets/53692899-c9ec-4b18-b0b8-266098158749)
-![iPhone-13-PRO-localhost (22)](https://github.com/user-attachments/assets/c34a7075-61e6-4d10-a28b-663f91efe75a)
 
+<div align="center">
+<img src="https://github.com/user-attachments/assets/a95028e1-55ca-4b99-b356-8129b901916b" alt="Update Mahasiswa Step 1" width="150px">
+<img src="https://github.com/user-attachments/assets/53692899-c9ec-4b18-b0b8-266098158749" alt="Update Mahasiswa Step 2" width="150px">
+<img src="https://github.com/user-attachments/assets/c34a7075-61e6-4d10-a28b-663f91efe75a" alt="Update Mahasiswa Step 3" width="150px">
+</div>
+
+---
 
 ### **1. Membuka Modal Edit Data**
+
 - **Kode yang dijalankan:**
 
 ```typescript
@@ -198,6 +201,7 @@ openModalEdit(isOpen: boolean, data: any) {
 ---
 
 ### **2. Form Edit Data Mahasiswa**
+
 - **HTML Form Modal Edit:**
 
 ```html
@@ -230,6 +234,7 @@ openModalEdit(isOpen: boolean, data: any) {
 ---
 
 ### **3. Menjalankan Fungsi `editMahasiswa`**
+
 - **Kode yang dijalankan:**
 
 ```typescript
@@ -281,6 +286,7 @@ editMahasiswa() {
 ---
 
 ### **4. Fungsi `edit` pada `ApiService`**
+
 - **Kode yang dijalankan:**
 
 ```typescript
@@ -295,6 +301,7 @@ edit(data: any, endpoint: string) {
 ---
 
 ### **5. Mengambil dan Menampilkan Data Terbaru**
+
 - **Kode yang dijalankan:**
 
 ```typescript
@@ -317,6 +324,7 @@ getMahasiswa() {
 ---
 
 ### **6. Menampilkan Notifikasi**
+
 - **Kode Alert:**
 
 ```typescript
@@ -332,8 +340,6 @@ async presentAlert(header: string, message: string) {
 
 - **Penjelasan:**
   - Fungsi ini digunakan untuk menampilkan notifikasi sukses atau gagal berdasarkan hasil operasi CRUD.
-
----
 
 
 ### Delete Mahasiswa
