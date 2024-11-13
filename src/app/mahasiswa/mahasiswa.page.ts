@@ -9,6 +9,11 @@ import { ApiService } from '../service/api.service';
 })
 export class MahasiswaPage implements OnInit {
   dataMahasiswa: any;
+  modalTambah: any;
+  modalEdit: any;
+  id: any;
+  nama: any;
+  jurusan: any;
 
   constructor(
     private api: ApiService,
@@ -32,11 +37,6 @@ export class MahasiswaPage implements OnInit {
     });
   }
 
-  modalTambah: any;
-  id: any;
-  nama: any;
-  jurusan: any;
-
   resetModal() {
     this.id = null;
     this.nama = '';
@@ -57,6 +57,17 @@ export class MahasiswaPage implements OnInit {
     this.resetModal();
   }
 
+  async presentAlert(header: string, message: string, color: string) {
+    const alert = await this.alert.create({
+      header,
+      message,
+      buttons: ['OK'],
+      cssClass: color === 'success' ? 'alert-success' : 'alert-danger',
+    });
+
+    await alert.present();
+  }
+
   tambahMahasiswa() {
     if (this.nama != '' && this.jurusan != '') {
       let data = {
@@ -65,18 +76,22 @@ export class MahasiswaPage implements OnInit {
       };
       this.api.tambah(data, 'tambah.php').subscribe({
         next: (hasil: any) => {
+          this.presentAlert(
+            'Berhasil',
+            'Mahasiswa berhasil ditambahkan',
+            'success'
+          );
           this.resetModal();
-          console.log('berhasil tambah mahasiswa');
           this.getMahasiswa();
           this.modalTambah = false;
           this.modal.dismiss();
         },
         error: (err: any) => {
-          console.log('gagal tambah mahasiswa');
+          this.presentAlert('Gagal', 'Gagal menambahkan mahasiswa', 'danger');
         },
       });
     } else {
-      console.log('gagal tambah mahasiswa karena masih ada data yg kosong');
+      this.presentAlert('Gagal', 'Data tidak boleh kosong', 'danger');
     }
   }
 
@@ -108,15 +123,15 @@ export class MahasiswaPage implements OnInit {
   hapusMahasiswa(id: any) {
     this.api.hapus(id, 'hapus.php?id=').subscribe({
       next: (res: any) => {
-        console.log('sukses', res);
+        this.presentAlert('Berhasil', 'Mahasiswa berhasil dihapus', 'success');
         this.getMahasiswa();
-        console.log('berhasil hapus data');
       },
       error: (error: any) => {
-        console.log('gagal');
+        this.presentAlert('Gagal', 'Gagal menghapus mahasiswa', 'danger');
       },
     });
   }
+
   ambilMahasiswa(id: any) {
     this.api.lihat(id, 'lihat.php?id=').subscribe({
       next: (hasil: any) => {
@@ -131,7 +146,6 @@ export class MahasiswaPage implements OnInit {
       },
     });
   }
-  modalEdit: any;
 
   openModalEdit(isOpen: boolean, idget: any) {
     this.modalEdit = isOpen;
@@ -141,6 +155,7 @@ export class MahasiswaPage implements OnInit {
     this.modalTambah = false;
     this.modalEdit = true;
   }
+
   editMahasiswa() {
     let data = {
       id: this.id,
@@ -149,15 +164,18 @@ export class MahasiswaPage implements OnInit {
     };
     this.api.edit(data, 'edit.php').subscribe({
       next: (hasil: any) => {
-        console.log(hasil);
+        this.presentAlert(
+          'Berhasil',
+          'Mahasiswa berhasil diperbarui',
+          'success'
+        );
         this.resetModal();
         this.getMahasiswa();
-        console.log('berhasil edit Mahasiswa');
         this.modalEdit = false;
         this.modal.dismiss();
       },
       error: (err: any) => {
-        console.log('gagal edit Mahasiswa');
+        this.presentAlert('Gagal', 'Gagal memperbarui mahasiswa', 'danger');
       },
     });
   }

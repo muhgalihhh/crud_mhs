@@ -12,10 +12,10 @@
   </ion-header>
   <!-- button tambah -->
 <ion-card>
-  <ion-button (click)="openModalTambah(true)" expand="block">Tambah Mahasiswa</ion-button>
+  <ion-button (click)="openModalTambah(true)" expand="block">+ Tambah Mahasiswa</ion-button>
 </ion-card>
 <!-- modal tambah -->
-<ion-modal [isOpen]="modalTambah" (ionModalDidDismiss)="cancel()">
+<ion-modal [isOpen]="modalTambah">
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -46,9 +46,8 @@
     </ion-content>
   </ng-template>
 </ion-modal>
-
 <!-- ini untuk modal edit -->
-<ion-modal [isOpen]="modalEdit" (ionModalDidDismiss)="cancel()">
+<ion-modal [isOpen]="modalEdit">
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -87,8 +86,8 @@
         {{item.nama}}
         <p>{{item.jurusan}}</p>
       </ion-label>
+      <ion-button color="danger" slot="end" (click)="presentDeleteConfirm(item)">Hapus</ion-button>
       <ion-button expand="block" (click)="openModalEdit(true,item.id)">Edit</ion-button>
-      <ion-button color="danger" slot="end" (click)="hapusMahasiswa(item.id)">Hapus</ion-button>
     </ion-item>
   </ion-card>
 </ion-content>
