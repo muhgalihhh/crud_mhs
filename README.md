@@ -28,6 +28,14 @@
 ## **Operasi CRUD**  
 
 ### **1. Tambah Mahasiswa**  
+
+---
+
+### **Gambar Operasi Tambah Mahasiswa**
+| Membuka Modal Tambah | Form Tambah Data | Notifikasi Sukses |
+|-----------------------|------------------|-------------------|
+| <img src="https://github.com/user-attachments/assets/8a2cd7fc-1785-42f6-aca4-7c05b035c9b7" width="150px" /> | <img src="https://github.com/user-attachments/assets/80b51d92-889e-4c71-8b2e-bfbf08588f40" width="150px" /> | <img src="https://github.com/user-attachments/assets/900e93af-c9ae-4303-8372-865b119c3130" width="150px" /> |
+
 #### **a. Membuka Modal Tambah Data**
 - **Kode yang dijalankan:**
 
@@ -161,13 +169,6 @@ async presentAlert(header: string, message: string) {
   await alert.present();
 }
 ```
-
----
-
-### **Gambar Operasi Tambah Mahasiswa**
-| Membuka Modal Tambah | Form Tambah Data | Notifikasi Sukses |
-|-----------------------|------------------|-------------------|
-| <img src="https://github.com/user-attachments/assets/8a2cd7fc-1785-42f6-aca4-7c05b035c9b7" width="150px" /> | <img src="https://github.com/user-attachments/assets/80b51d92-889e-4c71-8b2e-bfbf08588f40" width="150px" /> | <img src="https://github.com/user-attachments/assets/900e93af-c9ae-4303-8372-865b119c3130" width="150px" /> |
 
 --- 
 ### Update Mahasiswa
@@ -341,12 +342,17 @@ async presentAlert(header: string, message: string) {
 - **Penjelasan:**
   - Fungsi ini digunakan untuk menampilkan notifikasi sukses atau gagal berdasarkan hasil operasi CRUD.
 
+Tentu, saya akan menyesuaikan ukuran gambarnya agar konsisten seperti sebelumnya.
 
 ### Delete Mahasiswa
-![iPhone-13-PRO-localhost (23)](https://github.com/user-attachments/assets/f0ed2137-02f4-4b18-bd61-e15d372b63d1)
-![iPhone-13-PRO-localhost (24)](https://github.com/user-attachments/assets/1db01b5c-d0a4-48ee-bfd8-ebdf115b2d62)
 
 
+<div align="center">
+<img src="https://github.com/user-attachments/assets/f0ed2137-02f4-4b18-bd61-e15d372b63d1" alt="Update Mahasiswa Step 1" width="150px">
+<img src="https://github.com/user-attachments/assets/1db01b5c-d0a4-48ee-bfd8-ebdf115b2d62" alt="Update Mahasiswa Step 2" width="150px">
+
+</div>
+---
 
 ### **1. Memilih Mahasiswa yang Akan Dihapus**
 - **Kode yang dijalankan:**
@@ -356,8 +362,8 @@ async presentAlert(header: string, message: string) {
 ```
 
 - **Penjelasan:**
-  - Pada antarmuka, tombol **Hapus** akan memanggil fungsi `hapusMahasiswa` dengan parameter `id` mahasiswa yang ingin dihapus.
-  - ID ini nantinya digunakan untuk menentukan data yang akan dihapus.
+  - Tombol **Hapus** pada antarmuka akan memanggil fungsi `hapusMahasiswa` dengan parameter `id` mahasiswa yang ingin dihapus.
+  - ID mahasiswa ini digunakan untuk menentukan data yang akan dihapus.
 
 ---
 
@@ -371,7 +377,7 @@ hapusMahasiswa(id: any) {
 ```
 
 - **Penjelasan:**
-  - Fungsi ini memanggil `presentAlertConfirm` untuk menampilkan dialog konfirmasi kepada pengguna sebelum menghapus data.
+  - Fungsi ini memanggil `presentAlertConfirm` untuk menampilkan dialog konfirmasi sebelum menghapus data mahasiswa.
 
 ---
 
@@ -394,7 +400,7 @@ async presentAlertConfirm(id: any) {
       {
         text: 'Hapus',
         handler: () => {
-          this.prosesHapusMahasiswa(id); // Lanjutkan proses hapus jika dikonfirmasi
+          this.prosesHapusMahasiswa(id); // Lanjutkan penghapusan jika dikonfirmasi
         },
       },
     ],
@@ -405,8 +411,8 @@ async presentAlertConfirm(id: any) {
 ```
 
 - **Penjelasan:**
-  - Pengguna diminta untuk mengonfirmasi apakah benar ingin menghapus data.
-  - Jika memilih **"Hapus"**, fungsi `prosesHapusMahasiswa` akan dipanggil untuk melanjutkan proses.
+  - Pengguna akan diminta konfirmasi untuk memastikan apakah mereka ingin menghapus data.
+  - Jika memilih **"Hapus"**, fungsi `prosesHapusMahasiswa` dipanggil untuk melanjutkan penghapusan.
   - Jika memilih **"Batal"**, proses penghapusan dibatalkan.
 
 ---
@@ -419,7 +425,7 @@ prosesHapusMahasiswa(id: any) {
   this.api.hapus(id, 'hapus.php').subscribe({
     next: (hasil: any) => {
       console.log('berhasil hapus mahasiswa', hasil);
-      this.getMahasiswa(); // Refresh daftar mahasiswa
+      this.getMahasiswa(); // Refresh data mahasiswa
       this.presentAlert('Berhasil', 'Data berhasil dihapus.');
     },
     error: (err: any) => {
@@ -452,8 +458,8 @@ hapus(id: any, endpoint: string) {
 ```
 
 - **Penjelasan:**
-  - Fungsi ini mengirimkan permintaan HTTP DELETE ke endpoint `hapus.php` dengan ID mahasiswa yang ingin dihapus.
-  - Backend akan memproses permintaan ini untuk menghapus data dari database.
+  - Fungsi ini mengirim permintaan HTTP DELETE ke endpoint `hapus.php` dengan ID mahasiswa yang ingin dihapus.
+  - Backend kemudian akan memproses permintaan ini untuk menghapus data dari database.
 
 ---
 
@@ -475,9 +481,144 @@ getMahasiswa() {
 ```
 
 - **Penjelasan:**
-  - Setelah data berhasil dihapus, fungsi ini memanggil endpoint `tampil.php` untuk mengambil data mahasiswa terbaru dan memperbarui variabel `dataMahasiswa`.
+  - Setelah data berhasil dihapus, fungsi ini akan memanggil endpoint `tampil.php` untuk mengambil data mahasiswa terbaru dan memperbarui variabel `dataMahasiswa`.
+
+---Tentu, saya akan menyesuaikan ukuran gambarnya agar konsisten seperti sebelumnya.
+
+### Delete Mahasiswa
+
+![iPhone-13-PRO-localhost (23)](https://github.com/user-attachments/assets/f0ed2137-02f4-4b18-bd61-e15d372b63d1 =1024x1024)  
+![iPhone-13-PRO-localhost (24)](https://github.com/user-attachments/assets/1db01b5c-d0a4-48ee-bfd8-ebdf115b2d62 =1024x1024)
 
 ---
 
+### **1. Memilih Mahasiswa yang Akan Dihapus**
+- **Kode yang dijalankan:**
 
+```html
+<ion-button (click)="hapusMahasiswa(mahasiswa.id)">Hapus</ion-button>
+```
 
+- **Penjelasan:**
+  - Tombol **Hapus** pada antarmuka akan memanggil fungsi `hapusMahasiswa` dengan parameter `id` mahasiswa yang ingin dihapus.
+  - ID mahasiswa ini digunakan untuk menentukan data yang akan dihapus.
+
+---
+
+### **2. Menjalankan Fungsi `hapusMahasiswa`**
+- **Kode yang dijalankan:**
+
+```typescript
+hapusMahasiswa(id: any) {
+  this.presentAlertConfirm(id);
+}
+```
+
+- **Penjelasan:**
+  - Fungsi ini memanggil `presentAlertConfirm` untuk menampilkan dialog konfirmasi sebelum menghapus data mahasiswa.
+
+---
+
+### **3. Menampilkan Dialog Konfirmasi**
+- **Kode yang dijalankan:**
+
+```typescript
+async presentAlertConfirm(id: any) {
+  const alert = await this.alert.create({
+    header: 'Konfirmasi Hapus',
+    message: 'Apakah Anda yakin ingin menghapus data ini?',
+    buttons: [
+      {
+        text: 'Batal',
+        role: 'cancel',
+        handler: () => {
+          console.log('Hapus dibatalkan');
+        },
+      },
+      {
+        text: 'Hapus',
+        handler: () => {
+          this.prosesHapusMahasiswa(id); // Lanjutkan penghapusan jika dikonfirmasi
+        },
+      },
+    ],
+  });
+
+  await alert.present();
+}
+```
+
+- **Penjelasan:**
+  - Pengguna akan diminta konfirmasi untuk memastikan apakah mereka ingin menghapus data.
+  - Jika memilih **"Hapus"**, fungsi `prosesHapusMahasiswa` dipanggil untuk melanjutkan penghapusan.
+  - Jika memilih **"Batal"**, proses penghapusan dibatalkan.
+
+---
+
+### **4. Memproses Penghapusan Data**
+- **Kode yang dijalankan:**
+
+```typescript
+prosesHapusMahasiswa(id: any) {
+  this.api.hapus(id, 'hapus.php').subscribe({
+    next: (hasil: any) => {
+      console.log('berhasil hapus mahasiswa', hasil);
+      this.getMahasiswa(); // Refresh data mahasiswa
+      this.presentAlert('Berhasil', 'Data berhasil dihapus.');
+    },
+    error: (err: any) => {
+      console.log('gagal hapus mahasiswa', err);
+      this.presentAlert('Gagal', 'Gagal menghapus data.');
+    },
+  });
+}
+```
+
+- **Penjelasan:**
+  1. **Panggilan API untuk Hapus Data**:
+     - Menggunakan fungsi `hapus` dari `ApiService`, ID mahasiswa dikirim ke endpoint `hapus.php` dengan metode HTTP DELETE.
+  2. **Handling Response**:
+     - Jika berhasil:
+       - Daftar mahasiswa diperbarui dengan memanggil `getMahasiswa`.
+       - Tampilkan notifikasi sukses menggunakan `presentAlert`.
+     - Jika gagal:
+       - Tampilkan notifikasi kegagalan.
+
+---
+
+### **5. Fungsi `hapus` pada `ApiService`**
+- **Kode yang dijalankan:**
+
+```typescript
+hapus(id: any, endpoint: string) {
+  return this.http.delete(this.apiURL() + '/' + endpoint + '' + id);
+}
+```
+
+- **Penjelasan:**
+  - Fungsi ini mengirim permintaan HTTP DELETE ke endpoint `hapus.php` dengan ID mahasiswa yang ingin dihapus.
+  - Backend kemudian akan memproses permintaan ini untuk menghapus data dari database.
+
+---
+
+### **6. Mengambil dan Menampilkan Data Terbaru**
+- **Kode yang dijalankan:**
+
+```typescript
+getMahasiswa() {
+  this.api.tampil('tampil.php').subscribe({
+    next: (res: any) => {
+      console.log('sukses', res);
+      this.dataMahasiswa = res; // Memperbarui daftar mahasiswa
+    },
+    error: (err: any) => {
+      console.log(err);
+    },
+  });
+}
+```
+
+- **Penjelasan:**
+  - Setelah data berhasil dihapus, fungsi ini akan memanggil endpoint `tampil.php` untuk mengambil data mahasiswa terbaru dan memperbarui variabel `dataMahasiswa`.
+
+---
